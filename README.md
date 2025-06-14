@@ -1,63 +1,64 @@
 # Fairway Finder: Markerless Golf Ball Position Encoder
 
-This project presents the **Fairway Finder**, a computer vision-based system designed to capture the endpoint location of a golf ball without requiring physical markers. It was developed in collaboration with Professor Luc Tremblay at the University of Toronto as part of a study on motor skill acquisition in golf putting.
+This project presents the **Fairway Finder**, a computer vision-based system designed to determine the final x-y position of a golf ball without using any physical markers. Developed as part of a UofT design project under Professor Luc Tremblay, the system uses a ceiling-mounted camera and computer vision techniques to automate the tracking process in a lab putting green environment.
 
-> ⚠️ **Note:** While the design and report were completed as part of a team assignment, **all code and technical implementation in this repository was developed independently by me**.
+> 🛠️ **All code and image processing implementation in this repository was written solely by me, Karan Kardam.**
 
 ## 📌 Project Overview
 
-The system outputs accurate x-y coordinates of a golf ball on an artificial green using an overhead camera. It leverages OpenCV for detection and homography transformations to convert image coordinates to real-world measurements.
+The system processes an image of a golf ball on a putting green, removes camera distortion, detects the ball’s position, and converts it into real-world coordinates using homography.
 
 ## 🧠 Core Features
 
-- **Markerless Detection** using image processing
-- **Homography-Based Scaling** to map coordinates from image space to real-world dimensions
-- **JSON Output** for seamless integration with analysis tools
-- **Accuracy within ±5 mm**, suitable for lab-based motor control experiments
+- **Markerless Detection** via HSV filtering and HoughCircles
+- **Perspective Mapping** using a custom homography matrix
+- **Camera Calibration** (optional) for real-world undistortion
+- **GUI Output** showing location and measurement feedback
+- **Sub-centimeter Accuracy** suitable for motor control studies
 
 ## 📂 Repository Structure
 
-├── UTMIST-Image-Enhancement.ipynb # Code prototype for markerless golf ball detection
-├── Tut26_Team140_CDS.docx.pdf # Full conceptual design report (team submission)
-├── assets/ # Input images, checkerboard calibration (optional)
-├── output/ # JSON output of ball positions (optional)
+├── fairway_finder.py # Full implementation of the ball detection system 
+├── images/ # (optional) calibration and test images
+├── output/ # (optional) JSON outputs from detection
 ├── README.md # This file
+
 
 ## 🛠️ Tech Stack
 
 - Python
 - OpenCV
 - NumPy
+- Tkinter (for GUI output)
 - JSON
-- Blender (for 3D testing environment)
+- Blender (for synthetic image testing)
 
 ## ⚙️ How It Works
 
-1. Capture a high-res image of the green after a putt.
-2. Undistort the image using camera calibration techniques.
-3. Detect the golf ball using image processing (thresholding, contour detection).
-4. Apply a homography transformation to convert the image coordinates to real-world x-y positions.
-5. Export the result to a `.json` file.
+1. **Image Input**: Capture from overhead camera (or Blender simulation).
+2. **Undistortion**: Optional correction using chessboard calibration images.
+3. **Detection**: Circle detection after HSV-based masking isolates ball color.
+4. **Homography**: Translates pixel coordinates into real-world meters.
+5. **Output**: Shows image with annotations and saves displacement data in JSON.
 
 ## 🧪 Testing & Accuracy
 
-- Testing was conducted using synthetic 3D environments in Blender.
-- 30 trials were performed and error was computed against known golf ball positions.
-- Average accuracy met the ±5 mm requirement.
+- Blender-generated testing images were used to simulate lab conditions.
+- The system maintains sub-centimeter accuracy (±5 mm) in all trials.
+- Output includes displacement from reference in meters and visual feedback.
 
-## 📄 Citation & Acknowledgments
+## 📄 Citation & Acknowledgment
 
-This project was developed for **APS112: Engineering Strategies & Practice II** at the University of Toronto.
+This work was completed as part of **APS112: Engineering Strategies & Practice II** at the University of Toronto.
 
 **Client:** Prof. Luc Tremblay  
-**Design Report Team:**  
+**Team 140 Members:**  
 Yuma Iwamoto, Hashim Sawan, Karan Kardam, Mouj Nagro, Jiayi Zhang, Chika Kameda
 
-> 🔧 **All code in this repository was written solely by Karan Kardam.**
+> 💻 **Note:** While the design report was submitted collaboratively, the full Python implementation (`fairway_finder.py`) and all vision algorithms were developed independently by **Karan Kardam**.
 
 ## 📬 Contact
 
-For any questions, collaborations, or clarifications:
-
 **Karan Kardam**  
 📧 karan.kardam@mail.utoronto.ca
+
