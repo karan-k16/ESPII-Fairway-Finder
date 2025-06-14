@@ -16,14 +16,6 @@ The system processes an image of a golf ball on a putting green, removes camera 
 - **GUI Output** showing location and measurement feedback
 - **Sub-centimeter Accuracy** suitable for motor control studies
 
-## 📂 Repository Structure
-
-├── fairway_finder.py # Full implementation of the ball detection system 
-├── images/ # (optional) calibration and test images
-├── output/ # (optional) JSON outputs from detection
-├── README.md # This file
-
-
 ## 🛠️ Tech Stack
 
 - Python
